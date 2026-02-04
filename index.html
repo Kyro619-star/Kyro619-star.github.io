@@ -1,49 +1,73 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人主页</title>
+  <title>Kyro Zhao | Music Business</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <header class="hero">
       <div class="avatar-wrapper">
-        <img src="photo.JPG" alt="个人照片" class="avatar">
+        <img src="assets/photo.jpg" alt="Kyro Zhao" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show');">
+        <span class="avatar-placeholder" aria-hidden="true">KZ</span>
       </div>
-      <h1 class="name">你的姓名</h1>
-      <p class="tagline">简短一句话介绍自己</p>
+      <h1 class="name">Kyro Zhao</h1>
+      <p class="tagline">
+        <img src="assets/berklee.svg" alt="" class="berklee-icon" width="20" height="20">
+        Berklee College of Music · Music Business
+      </p>
     </header>
 
-    <section class="bio">
-      <h2>关于我</h2>
-      <p>
-        在这里写一段个人简介。可以介绍你的背景、兴趣、专业领域或任何你想分享的内容。
-        保持简洁有力，让访客能快速了解你是谁。
-      </p>
-    </section>
+    <main>
+      <section class="bio" id="bio">
+        <h2>About</h2>
+        <p>
+          I'm a Berklee College of Music student majoring in Music Business. I'm interested in how artists build audiences across cultures and how new platforms can improve the way fans support creators. Right now I'm focused on strengthening my marketing strategy skills and learning how to think like a product builder.
+        </p>
+      </section>
 
-    <section class="projects">
-      <h2>项目与作品</h2>
-      <div class="project-grid">
-        <article class="project-card">
-          <h3>项目一</h3>
-          <p>简要描述你的项目、成果或作品。</p>
-        </article>
-        <article class="project-card">
-          <h3>项目二</h3>
-          <p>可以添加链接、技术栈或成果说明。</p>
-        </article>
-      </div>
-    </section>
+      <section class="portfolio" id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Web3 Music/Art Platform Notes</h3>
+            <p>Short profiles and takeaways from music + Web3 companies</p>
+          </article>
+          <article class="card">
+            <h3>Marketing / Product Case Studies</h3>
+            <p>Class assignments on product strategy and audience growth</p>
+          </article>
+          <article class="card">
+            <h3>Creative Work & Performance</h3>
+            <p>Links to selected projects and recordings (placeholders for now)</p>
+          </article>
+        </div>
+      </section>
 
-    <footer>
-      <p>© 2025 你的姓名</p>
+      <section class="contact" id="contact">
+        <h2>Contact</h2>
+        <ul class="contact-list">
+          <li>
+            <span class="label">Email</span>
+            <a href="mailto:boxinzhao619@gmail.com" class="link">boxinzhao619@gmail.com</a>
+          </li>
+          <li>
+            <span class="label">GitHub</span>
+            <a href="https://github.com/Kyro619-star" class="link" target="_blank" rel="noopener noreferrer">github.com/Kyro619-star</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built with Cursor + GitHub Pages</p>
     </footer>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
