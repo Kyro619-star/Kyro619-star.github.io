@@ -1,64 +1,66 @@
-# Kyro Zhao · 个人网站部署指南
+# Kyro Zhao · Personal Site — Deploy Guide
 
-## 📁 需要创建的文件
-
-项目中应包含以下文件：
+## File Structure
 
 ```
 Kyro619-star.github.io/
-├── index.html          # 主页面
-├── style.css           # 样式
-├── script.js           # 微交互（可选）
-├── DEPLOY.md           # 本说明文件
+├── index.html
+├── style.css
+├── script.js
+├── DEPLOY.md
 └── assets/
-    ├── photo.jpg       # 你的个人照片 ← 放这里
-    └── berklee.svg     # Berklee 图标
+    ├── photo.jpg      ← Your photo goes here
+    └── berklee.svg    ← Berklee "B" icon (already included)
 ```
 
 ---
 
-## 📸 照片放置位置
+## 1. Where to Place Your Photo
 
-1. 将你的个人照片文件命名为 **`photo.jpg`**
-2. 放入 **`assets`** 文件夹，完整路径为：`assets/photo.jpg`
-3. 如果已有 `photo.JPG` 在根目录，可复制到 `assets/` 并重命名为 `photo.jpg`
-
----
-
-## 🎓 Berklee 图标位置
-
-- 文件路径：**`assets/berklee.svg`**
-- 已包含一个简约的 “B” 字母图标
-- 若需替换为 Berklee 官方 logo，只需用官方 SVG 覆盖此文件即可
+- **Path:** `assets/photo.jpg`
+- Place your personal photo in the `assets` folder and name it `photo.jpg`.
+- If the file is missing, the site shows an elegant "KZ" placeholder circle.
 
 ---
 
-## 🚀 推送到 GitHub Pages
+## 2. Berklee Icon Location
 
-### 方法一：在 Cursor 中操作
+- **Path:** `assets/berklee.svg`
+- A clean "B" monogram SVG is already included.
+- To use Berklee's official logo, replace this file with the official SVG.
 
-1. 打开 **Source Control** 面板（左侧栏图标或 `Cmd+Shift+G`）
-2. 在 “Changes” 中勾选要提交的文件
-3. 在顶部输入框填写提交信息，例如：`Update personal site for Kyro Zhao`
-4. 点击 **✓ Commit** 按钮
-5. 点击 **Sync Changes** 或 **Push** 推送到 GitHub
+---
 
-### 方法二：使用终端
+## 3. GitHub Pages Setup
+
+- **Branch:** `main`
+- **Folder:** root (`/`)
+- In your repo: **Settings → Pages → Source:** `Deploy from a branch`
+- **Branch:** `main` | **Folder:** `/ (root)`
+
+---
+
+## 4. Commit & Push in Cursor
+
+1. Open **Source Control** (left sidebar icon or `Cmd+Shift+G`).
+2. Stage all changes (click **+** next to each file or **Stage All**).
+3. Enter commit message: `Refactor: premium modular site, modal portfolio, dark theme`.
+4. Click **✓ Commit**.
+5. Click **Sync Changes** or **Push**.
+
+Or in Terminal:
 
 ```bash
 cd /Users/brian/Documents/GitHub/Kyro619-star.github.io
-
 git add .
-git commit -m "Update personal site for Kyro Zhao"
+git commit -m "Refactor: premium modular site, modal portfolio, dark theme"
 git push origin main
 ```
 
 ---
 
-## ✅ 上线后访问
+## 5. View the Live Site
 
-推送成功后，等待 1–2 分钟，在浏览器打开：
-
-**https://kyro619-star.github.io**
-
-若此前未启用 GitHub Pages，请到仓库的 **Settings → Pages**，将 Source 设置为 `Deploy from a branch`，Branch 选 `main`。
+1. Wait 1–2 minutes for GitHub Pages to redeploy.
+2. Hard refresh your browser: **Cmd+Shift+R** (Mac) or **Ctrl+Shift+R** (Windows).
+3. Visit: **https://kyro619-star.github.io**
