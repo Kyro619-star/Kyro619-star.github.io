@@ -1,12 +1,30 @@
+/* ========== 颜色主题：修改下面变量即可更换整体配色 ========== */
 :root {
-  --bg: #f8f6f2;
-  --text: #2d2a26;
-  --text-muted: #6b6560;
-  --accent: #b85c38;
-  --accent-soft: #e8d5ce;
-  --card-bg: #ffffff;
-  --shadow: rgba(45, 42, 38, 0.08);
+  /* 背景色 */
+  --bg: #0f1419;
+  --bg-elevated: #1a2332;
+  
+  /* 文字色 */
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  
+  /* 主色调（可改成你喜欢的颜色） */
+  --accent: #58a6ff;
+  --accent-soft: rgba(88, 166, 255, 0.15);
+  --accent-glow: rgba(88, 166, 255, 0.25);
+  
+  /* 卡片与装饰 */
+  --card-bg: rgba(26, 35, 50, 0.8);
+  --card-border: rgba(88, 166, 255, 0.2);
+  --shadow: rgba(0, 0, 0, 0.3);
 }
+
+/* 备选配色方案（复制到上面替换即可）：
+   温暖金色: --accent: #e6a756; --accent-soft: rgba(230,167,86,0.15);
+   薄荷绿:   --accent: #3fb950; --accent-soft: rgba(63,185,80,0.15);
+   玫瑰粉:   --accent: #db61a2; --accent-soft: rgba(219,97,162,0.15);
+   薰衣草:   --accent: #a371f7; --accent-soft: rgba(163,113,247,0.15);
+*/
 
 * {
   margin: 0;
@@ -18,29 +36,80 @@ body {
   font-family: 'Noto Sans SC', -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.75;
   font-weight: 300;
   min-height: 100vh;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-soft), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, var(--accent-soft), transparent);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .container {
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 4rem 2rem;
+  animation: fadeInUp 0.7s ease-out forwards;
 }
 
 .hero {
   text-align: center;
-  padding: 3rem 0 4rem;
-  border-bottom: 1px solid var(--accent-soft);
+  padding: 2rem 0 4rem;
+}
+
+.hero .avatar-wrapper {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+.hero .name {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+.hero .tagline {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.avatar-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--card-border);
+  box-shadow: 
+    0 0 0 1px var(--accent-soft),
+    0 8px 32px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.03);
+  box-shadow: 
+    0 0 24px var(--accent-glow),
+    0 12px 40px var(--shadow);
 }
 
 .name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .tagline {
@@ -55,10 +124,30 @@ section {
 
 section h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
   color: var(--accent);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+section h2::before {
+  content: '';
+  width: 4px;
+  height: 1.2em;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  border-radius: 2px;
+}
+
+.bio {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
 }
 
 .bio p {
@@ -68,20 +157,22 @@ section h2 {
 
 .project-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .project-card {
   background: var(--card-bg);
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px var(--shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(45, 42, 38, 0.12);
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px var(--shadow);
 }
 
 .project-card h3 {
@@ -100,7 +191,7 @@ footer {
   text-align: center;
   padding: 3rem 0;
   margin-top: 2rem;
-  border-top: 1px solid var(--accent-soft);
+  border-top: 1px solid var(--card-border);
   font-size: 0.9rem;
   color: var(--text-muted);
 }
@@ -110,9 +201,16 @@ footer {
     padding: 2rem 1.25rem;
   }
   .hero {
-    padding: 2rem 0 3rem;
+    padding: 1.5rem 0 3rem;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
   }
   section {
     padding: 2rem 0;
+  }
+  .bio {
+    padding: 1.75rem;
   }
 }
