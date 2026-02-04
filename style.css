@@ -1,0 +1,118 @@
+:root {
+  --bg: #f8f6f2;
+  --text: #2d2a26;
+  --text-muted: #6b6560;
+  --accent: #b85c38;
+  --accent-soft: #e8d5ce;
+  --card-bg: #ffffff;
+  --shadow: rgba(45, 42, 38, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 0 4rem;
+  border-bottom: 1px solid var(--accent-soft);
+}
+
+.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+section {
+  padding: 3rem 0;
+}
+
+section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.bio p {
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.project-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(45, 42, 38, 0.12);
+}
+
+.project-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.project-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+footer {
+  text-align: center;
+  padding: 3rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid var(--accent-soft);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 2rem 1.25rem;
+  }
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+  section {
+    padding: 2rem 0;
+  }
+}
