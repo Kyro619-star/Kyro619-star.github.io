@@ -43,7 +43,29 @@
     }
   }
 
+  function initCareAbout() {
+    const trigger = document.getElementById('care-about-trigger');
+    const content = document.getElementById('care-about-content');
+    if (!trigger || !content) return;
+
+    function toggle() {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', !isOpen);
+      content.hidden = isOpen;
+    }
+
+    trigger.addEventListener('click', toggle);
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  }
+
   function init() {
+    initCareAbout();
+
     // Portfolio cards: click to open modal
     document.querySelectorAll('.portfolio-card').forEach((card) => {
       const modalId = card.getAttribute('data-modal');

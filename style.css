@@ -1,17 +1,19 @@
 /* ===== Kyro Zhao · Premium Personal Site ===== */
 
 :root {
-  --bg: #1c1c1a;
-  --bg-elevated: #252422;
-  --card-bg: rgba(37, 36, 34, 0.85);
-  --card-border: rgba(255, 255, 255, 0.06);
-  --text: #e8e6e3;
-  --text-muted: #9a968f;
-  --accent: #7b8a9a;
-  --accent-soft: rgba(123, 138, 154, 0.2);
-  --shadow: rgba(0, 0, 0, 0.3);
-  --shadow-hover: rgba(0, 0, 0, 0.4);
-  --glow: rgba(123, 138, 154, 0.12);
+  --primary: #4167B1;
+  --bg: #F7FAFF;
+  --bg-elevated: #ffffff;
+  --surface: #DEF0F9;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(65, 103, 177, 0.12);
+  --text: #1B1F23;
+  --text-muted: rgba(27, 31, 35, 0.65);
+  --accent: var(--primary);
+  --accent-soft: rgba(65, 103, 177, 0.15);
+  --shadow: rgba(65, 103, 177, 0.08);
+  --shadow-hover: rgba(65, 103, 177, 0.12);
+  --glow: rgba(65, 103, 177, 0.06);
 }
 
 * {
@@ -60,7 +62,7 @@ body::after {
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.02;
+  opacity: 0.015;
   pointer-events: none;
   z-index: 0;
 }
@@ -186,6 +188,68 @@ section h2 {
   font-size: 1rem;
   color: var(--text);
   line-height: 1.75;
+}
+
+/* ----- What I Care About (toggle) ----- */
+.care-about-block {
+  margin-bottom: 1.25rem;
+}
+
+.care-about-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.care-about-trigger:hover,
+.care-about-trigger:focus {
+  color: var(--text);
+  outline: none;
+}
+
+.care-about-trigger:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.chevron {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.chevron::before {
+  content: '▾';
+}
+
+.care-about-trigger[aria-expanded="true"] .chevron::before {
+  content: '▴';
+}
+
+.care-about-content {
+  margin-top: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid rgba(65, 103, 177, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(65, 103, 177, 0.06);
+}
+
+.care-about-content p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 100%;
 }
 
 .highlights {
@@ -327,7 +391,7 @@ section h2 {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(27, 31, 35, 0.4);
   backdrop-filter: blur(4px);
   cursor: pointer;
 }
@@ -340,7 +404,7 @@ section h2 {
   padding: 2rem;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 24px 48px var(--shadow);
+  box-shadow: 0 24px 48px var(--shadow), 0 0 0 1px rgba(65, 103, 177, 0.06);
 }
 
 .modal-close {
@@ -432,6 +496,10 @@ section h2 {
   .bio-card,
   .contact-card {
     padding: 1.25rem 1.5rem;
+  }
+
+  .care-about-content {
+    padding: 1rem 1.25rem;
   }
 
   .portfolio-card {
