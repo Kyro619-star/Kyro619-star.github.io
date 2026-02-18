@@ -50,11 +50,11 @@
 
     function toggle() {
       const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-      trigger.setAttribute('aria-expanded', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
       content.hidden = isOpen;
     }
 
-    trigger.addEventListener('click', toggle);
+    trigger.addEventListener('click', () => toggle());
     trigger.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
