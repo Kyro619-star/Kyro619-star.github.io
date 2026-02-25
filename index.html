@@ -8,9 +8,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="top">
   <div class="page">
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a href="#top" class="nav-logo">Kyro Zhao</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="#about">About</a>
+          <a href="#building">What I'm Building</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
     <header class="hero">
       <div class="hero-text">
         <h1 class="name">Kyro Zhao</h1>
@@ -18,6 +31,10 @@
           <img src="assets/berklee.svg" alt="" class="berklee-icon" width="18" height="18">
           Berklee College of Music · Music Business
         </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="cta-btn">View Portfolio</a>
+          <a href="#contact" class="cta-btn cta-btn-outline">Contact</a>
+        </div>
       </div>
       <div class="avatar-wrapper">
         <img src="assets/photo.jpg" alt="Kyro Zhao" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show');">
@@ -26,6 +43,18 @@
     </header>
 
     <main>
+      <section class="who" id="who">
+        <h2>Who This Is For</h2>
+        <ul>
+          <li>Independent creators publishing public work (short videos, short films, podcasts, game demos) who need music they can use legally</li>
+          <li>Creators who have faced copyright issues before (claims, muted audio, demonetization) and want a safer workflow</li>
+          <li>Small teams or solo creators working on deadlines who need clear terms and a fast, simple process</li>
+          <li>Indie artists and producers who want placements with clear credit and straightforward licensing</li>
+        </ul>
+        <p>“I help creators license music clearly and quickly, so they can publish with confidence and without legal guesswork.”</p>
+        <a href="#contact" class="cta-btn">Contact me</a>
+      </section>
+
       <section class="about" id="about">
         <h2>About</h2>
         <div class="bio-card">
