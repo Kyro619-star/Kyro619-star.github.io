@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { PixelMascot } from './PixelMascot'
-import { InkScribble, MarkerStroke } from './Doodles'
+import { FlowerCluster } from './FlowerField'
 
 export function Bio() {
   const ref = useRef<HTMLElement>(null)
@@ -13,7 +13,7 @@ export function Bio() {
       ([entry]) => {
         if (entry.isIntersecting) setInView(true)
       },
-      { threshold: 0.22 },
+      { threshold: 0.2 },
     )
     io.observe(el)
     return () => io.disconnect()
@@ -25,13 +25,10 @@ export function Bio() {
       className={`section bio ${inView ? 'is-inview' : ''}`}
       id="bio"
     >
-      <span className="section-kicker hand-label">01 · About</span>
+      <FlowerCluster className="section-flowers" />
+      <span className="section-kicker">01 · About</span>
       <h2 className="section-title">
-        Real photo{' '}
-        <span className="paint-plus" aria-hidden="true">
-          +
-        </span>{' '}
-        pixel twin
+        Real photo <span className="paint-plus">+</span> pixel twin
       </h2>
       <p className="section-lead">
         Berklee Music Business student. Curious about how artists get seen,
@@ -46,16 +43,15 @@ export function Bio() {
             alt="Portrait of Kyro Zhao"
             className="bio-photo"
           />
-          <figcaption className="bio-photo-cap hand-label">Kyro · IRL</figcaption>
-          <MarkerStroke className="bio-stroke" color="#ff2d95" />
+          <figcaption className="bio-photo-cap">Kyro · IRL</figcaption>
         </figure>
 
         <div className="bio-copy">
           <div className="bio-mascot-row">
-            <PixelMascot size={132} waving />
-            <p className="bio-pixel-note hand-label">
+            <PixelMascot size={128} pose="present" />
+            <p className="bio-pixel-note">
               pixel twin
-              <small>wavy hair · cheek mole · black shirt</small>
+              <small>wavy hair · eye whites · fancy fit</small>
             </p>
           </div>
 
@@ -81,7 +77,6 @@ export function Bio() {
             <span>Dance</span>
             <span>Original Songs</span>
           </div>
-          <InkScribble className="bio-scribble" />
         </div>
       </div>
     </section>

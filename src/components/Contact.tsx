@@ -1,12 +1,12 @@
-import { InkScribble, MarkerStroke } from './Doodles'
+import { FlowerCluster } from './FlowerField'
 
 export function Contact() {
   return (
     <section className="section contact" id="contact">
-      <span className="section-kicker hand-label">03 · Contact</span>
+      <FlowerCluster className="section-flowers" />
+      <span className="section-kicker">03 · Contact</span>
       <h2 className="section-title">
-        Next step is{' '}
-        <span className="type-paint blue-wash">easy</span>
+        Next step is <span className="type-paint blue-wash">easy</span>
       </h2>
       <p className="section-lead">
         Hiring, collab, or music business talk — one click. No maze.
@@ -32,8 +32,6 @@ export function Contact() {
       <p className="contact-meta">
         boxinzhao619@gmail.com · Boston / remote OK
       </p>
-      <MarkerStroke className="contact-stroke" color="#ffe500" />
-      <InkScribble className="contact-scribble" />
     </section>
   )
 }

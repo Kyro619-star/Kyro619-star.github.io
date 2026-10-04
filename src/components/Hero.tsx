@@ -1,22 +1,21 @@
 import { PixelMascot } from './PixelMascot'
-import { CrayonFlower, HalftoneBlob, InkScribble, MarkerStroke, VinylRough } from './Doodles'
+import { FlowerCluster } from './FlowerField'
 
 export function Hero() {
   return (
     <section className="hero" id="pitch" aria-label="Quick pitch">
       <div className="hero-collage" aria-hidden="true">
+        <FlowerCluster className="hero-flowers-a" />
+        <FlowerCluster className="hero-flowers-b" />
         <span className="hero-type-ghost">KYRO</span>
-        <CrayonFlower className="hero-doodle flower-a" />
-        <InkScribble className="hero-doodle scribble-a" />
-        <HalftoneBlob className="hero-doodle blob-a" />
-        <VinylRough className="hero-doodle vinyl-a" />
-        <MarkerStroke className="hero-doodle stroke-a" color="#ffe500" />
-        <MarkerStroke className="hero-doodle stroke-b" color="#1e5eff" />
+        <span className="type-chip chip-a">SEASON</span>
+        <span className="type-chip chip-b">OPENING</span>
+        <span className="type-chip chip-c">BERKLEE MB</span>
+        <span className="ink-knot" />
       </div>
 
       <div className="hero-content">
         <p className="hero-eyebrow">
-          <img src="/assets/berklee.svg" alt="" width={14} height={14} />
           Berklee College of Music · Music Business
         </p>
 
@@ -28,8 +27,8 @@ export function Hero() {
         </h1>
 
         <p className="hero-pitch">
-          Music-business student building clearer paths for artists —
-          across markets, platforms, and culture.
+          Music-business student building clearer paths for artists — across
+          markets, platforms, and culture.
         </p>
 
         <div className="hero-cta">
@@ -43,8 +42,8 @@ export function Hero() {
       </div>
 
       <div className="hero-mascot-wrap">
-        <PixelMascot size={172} waving className="hero-mascot" />
-        <span className="hero-bubble">hi — skim me</span>
+        <PixelMascot size={168} pose="point" />
+        <span className="hero-bubble">skim me ↓</span>
       </div>
     </section>
   )

@@ -12,7 +12,7 @@ export function SiteNav() {
     <header className="site-nav">
       <div className="site-nav-inner">
         <a href="#pitch" className="nav-brand">
-          <PixelMascot size={42} bust />
+          <PixelMascot size={40} bust pose="wave" />
           <span>
             Kyro Zhao
             <small>Berklee · Music Business</small>

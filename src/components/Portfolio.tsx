@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { MarkerStroke, VinylRough } from './Doodles'
+import { FlowerCluster } from './FlowerField'
 
 type Item = {
   id: string
@@ -19,7 +19,7 @@ const ITEMS: Item[] = [
       'Music & Web3 coursework: map a real payout confusion into a simpler artist-facing flow.',
     detail:
       // TODO: replace with final case study link / deck when ready
-      'Prototype notes for independent artists who want clearer visibility into licensing choices and earnings. Focus: fewer hidden steps, plainer language, actionable next move.',
+      'Prototype notes for independent artists who want clearer visibility into licensing choices and earnings.',
     tag: 'Music Biz',
   },
   {
@@ -30,7 +30,7 @@ const ITEMS: Item[] = [
       'Short profiles and takeaways from music / art platforms — what works, what is hype.',
     detail:
       // TODO: attach real write-ups
-      'Comparative sketches on discovery, rights framing, and creator incentives. Built for quick skimming: problem → insight → what I would ship next.',
+      'Comparative sketches on discovery, rights framing, and creator incentives.',
     tag: 'Music Biz',
   },
   {
@@ -40,7 +40,7 @@ const ITEMS: Item[] = [
     blurb:
       'Helping creators license music clearly so they can publish without legal guesswork.',
     detail:
-      'Audience: indie creators on deadline who have hit claims / muted audio before. Promise: clear terms, fast process, credit that sticks.',
+      'Audience: indie creators on deadline. Promise: clear terms, fast process, credit that sticks.',
     tag: 'Music Biz',
   },
   {
@@ -51,7 +51,7 @@ const ITEMS: Item[] = [
       'Selected performance moments — energy, musicality, and presence over polish.',
     detail:
       // TODO: embed real clip / event name
-      'Placeholder reel slot for live dance work. Direction: short loop that shows musical phrasing and crowd read, not a full showcase dump.',
+      'Placeholder reel slot for live dance work.',
     tag: 'Dance',
   },
   {
@@ -61,7 +61,7 @@ const ITEMS: Item[] = [
     blurb:
       'Workshop sessions connecting movement with music-business storytelling.',
     detail:
-      'Placeholder for classroom or community sessions where dance becomes a communication tool for artist identity.',
+      'Placeholder for community sessions where dance communicates artist identity.',
     tag: 'Dance',
   },
   {
@@ -71,7 +71,7 @@ const ITEMS: Item[] = [
     blurb: 'Self-written sketch — hook-first, built to travel.',
     detail:
       // TODO: link streaming / private demo
-      'Placeholder for an original track. Intent: one memorable hook + one clear mood so listeners remember the writer, not just the beat.',
+      'Placeholder for an original track.',
     tag: 'Songs',
   },
   {
@@ -79,8 +79,7 @@ const ITEMS: Item[] = [
     lane: 'songs',
     title: 'Writer Notes',
     blurb: 'Motifs, lines, and production references from the scrapbook.',
-    detail:
-      'Process artifacts: lyric scraps, melody doodles, and references that show how culture and craft meet before release.',
+    detail: 'Process artifacts before release.',
     tag: 'Songs',
   },
 ]
@@ -105,7 +104,7 @@ export function Portfolio() {
       ([entry]) => {
         if (entry.isIntersecting) setListIn(true)
       },
-      { threshold: 0.12 },
+      { threshold: 0.1 },
     )
     io.observe(el)
     return () => io.disconnect()
@@ -116,14 +115,14 @@ export function Portfolio() {
 
   return (
     <section className="section portfolio" id="work">
-      <span className="section-kicker hand-label">02 · Work</span>
+      <FlowerCluster className="section-flowers flip" />
+      <span className="section-kicker">02 · Work</span>
       <h2 className="section-title">
-        Work that{' '}
-        <span className="type-paint pink-wash">sticks</span>
+        Work that <span className="type-paint">sticks</span>
       </h2>
       <p className="section-lead">
-        Music Business first, then dance and original songs. Open a line for
-        detail — journal entries, not product cards.
+        Music Business first, then dance and original songs. Journal lines —
+        not product cards.
       </p>
 
       <div className="lane-tabs" role="tablist" aria-label="Portfolio lanes">
@@ -145,26 +144,15 @@ export function Portfolio() {
         ref={listRef}
         className={`work-journal ${listIn ? 'is-inview' : ''}`}
       >
-        <VinylRough className="journal-deco" />
         {visible.map((item, index) => (
           <article
             key={item.id}
             className={`journal-row lane-${item.lane}`}
-            style={{ animationDelay: `${index * 80}ms` }}
+            style={{ animationDelay: `${index * 70}ms` }}
           >
-            <span className="work-tag hand-label">{item.tag}</span>
+            <span className="work-tag">{item.tag}</span>
             <div className="journal-main">
               <h3>{item.title}</h3>
-              <MarkerStroke
-                className="title-underline"
-                color={
-                  item.lane === 'biz'
-                    ? '#ff2d95'
-                    : item.lane === 'dance'
-                      ? '#1e5eff'
-                      : '#8dff3a'
-                }
-              />
               <p>{item.blurb}</p>
             </div>
             <button
@@ -199,7 +187,7 @@ export function Portfolio() {
             >
               ×
             </button>
-            <span className="work-tag hand-label">{openItem.tag}</span>
+            <span className="work-tag">{openItem.tag}</span>
             <h3 id="work-modal-title">{openItem.title}</h3>
             <p>{openItem.detail}</p>
           </div>
