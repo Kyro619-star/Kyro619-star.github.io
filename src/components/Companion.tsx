@@ -1,40 +1,38 @@
 import { useEffect, useState } from 'react'
 import { PixelMascot, type MascotPose } from './PixelMascot'
 
-const SECTION_POSE: { id: string; pose: MascotPose; caption: string }[] = [
-  { id: 'pitch', pose: 'point', caption: 'pitch →' },
+const SECTIONS: { id: string; pose: MascotPose; caption: string }[] = [
+  { id: 'pitch', pose: 'wave', caption: 'hey' },
   { id: 'bio', pose: 'present', caption: 'about' },
-  { id: 'work', pose: 'business', caption: 'biz mode' },
-  { id: 'contact', pose: 'contact', caption: 'say hi' },
+  { id: 'work', pose: 'business', caption: 'biz' },
+  { id: 'contact', pose: 'contact', caption: 'hi' },
 ]
 
-function poseForScroll(): { pose: MascotPose; caption: string } {
-  const mid = window.innerHeight * 0.35
-  let current = SECTION_POSE[0]
-  for (const s of SECTION_POSE) {
+function resolve() {
+  const mid = window.innerHeight * 0.38
+  let cur = SECTIONS[0]
+  for (const s of SECTIONS) {
     const el = document.getElementById(s.id)
     if (!el) continue
-    const top = el.getBoundingClientRect().top
-    if (top <= mid) current = s
+    if (el.getBoundingClientRect().top <= mid) cur = s
   }
-  // refine work lane by nearest work heading tags if present
-  if (current.id === 'work') {
-    const dance = document.querySelector('.lane-dance')
+  if (cur.id === 'work') {
     const songs = document.querySelector('.lane-songs')
+    const dance = document.querySelector('.lane-dance')
     if (songs) {
       const r = songs.getBoundingClientRect()
-      if (r.top < mid + 80 && r.bottom > mid - 80) {
-        return { pose: 'music', caption: 'songs' }
+      if (r.top < mid + 90 && r.bottom > mid - 90) {
+        return { pose: 'music' as MascotPose, caption: 'songs' }
       }
     }
     if (dance) {
       const r = dance.getBoundingClientRect()
-      if (r.top < mid + 80 && r.bottom > mid - 80) {
-        return { pose: 'dance', caption: 'dance' }
+      if (r.top < mid + 90 && r.bottom > mid - 90) {
+        return { pose: 'dance' as MascotPose, caption: 'dance' }
       }
     }
   }
-  return { pose: current.pose, caption: current.caption }
+  return { pose: cur.pose, caption: cur.caption }
 }
 
 export function Companion({ visible }: { visible: boolean }) {
@@ -43,17 +41,17 @@ export function Companion({ visible }: { visible: boolean }) {
 
   useEffect(() => {
     if (!visible) return
-    const update = () => {
-      const next = poseForScroll()
-      setPose(next.pose)
-      setCaption(next.caption)
+    const tick = () => {
+      const n = resolve()
+      setPose(n.pose)
+      setCaption(n.caption)
     }
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update)
+    tick()
+    window.addEventListener('scroll', tick, { passive: true })
+    window.addEventListener('resize', tick)
     return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', tick)
+      window.removeEventListener('resize', tick)
     }
   }, [visible])
 
@@ -61,7 +59,7 @@ export function Companion({ visible }: { visible: boolean }) {
 
   return (
     <aside className="companion" aria-hidden="true">
-      <PixelMascot size={96} pose={pose} />
+      <PixelMascot size={84} pose={pose} />
       <span className="companion-caption">{caption}</span>
     </aside>
   )

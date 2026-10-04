@@ -1,23 +1,31 @@
 import { PixelMascot } from './PixelMascot'
-import { FlowerCluster } from './FlowerField'
+import {
+  ChartMark,
+  CrayonFlower,
+  HeadphonesMark,
+  InkScribble,
+  TicketMark,
+  VinylMark,
+} from './Marks'
 
 export function Hero() {
   return (
     <section className="hero" id="pitch" aria-label="Quick pitch">
-      <div className="hero-collage" aria-hidden="true">
-        <FlowerCluster className="hero-flowers-a" />
-        <FlowerCluster className="hero-flowers-b" />
-        <span className="hero-type-ghost">KYRO</span>
-        <span className="type-chip chip-a">SEASON</span>
-        <span className="type-chip chip-b">OPENING</span>
-        <span className="type-chip chip-c">BERKLEE MB</span>
-        <span className="ink-knot" />
+      <div className="hero-marks" aria-hidden="true">
+        <CrayonFlower className="hm hm-flower-a" color="#fd38d6" />
+        <CrayonFlower className="hm hm-flower-b" color="#ff5f18" center="#efeded" />
+        <VinylMark className="hm hm-vinyl" />
+        <TicketMark className="hm hm-ticket" />
+        <ChartMark className="hm hm-chart" />
+        <HeadphonesMark className="hm hm-phones" />
+        <InkScribble className="hm hm-scribble" />
+        <span className="hm hm-type">KYRO</span>
+        <span className="hm hm-chip chip-lime">PITCH</span>
+        <span className="hm hm-chip chip-sky">BERKLEE MB</span>
       </div>
 
       <div className="hero-content">
-        <p className="hero-eyebrow">
-          Berklee College of Music · Music Business
-        </p>
+        <p className="hero-eyebrow">Berklee College of Music · Music Business</p>
 
         <h1 className="hero-name">
           <span className="hero-name-line">KYRO</span>
@@ -42,7 +50,7 @@ export function Hero() {
       </div>
 
       <div className="hero-mascot-wrap">
-        <PixelMascot size={168} pose="point" />
+        <PixelMascot size={148} pose="wave" />
         <span className="hero-bubble">skim me ↓</span>
       </div>
     </section>

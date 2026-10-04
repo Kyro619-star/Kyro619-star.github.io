@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react'
 import { Bio } from './components/Bio'
+import { BookOpen } from './components/BookOpen'
 import { Companion } from './components/Companion'
 import { Contact } from './components/Contact'
-import { DiaryLoader } from './components/DiaryLoader'
-import { FlowerField } from './components/FlowerField'
 import { Hero } from './components/Hero'
 import { Portfolio } from './components/Portfolio'
 import { SiteNav } from './components/SiteNav'
@@ -17,8 +16,7 @@ export default function App() {
   return (
     <div className={`site-shell ${ready ? '' : 'is-locked'}`}>
       <SvgDefs />
-      <FlowerField />
-      {!ready && <DiaryLoader onDone={finishIntro} />}
+      {!ready && <BookOpen onDone={finishIntro} />}
 
       <div className={`site-main ${ready ? 'is-in' : ''}`}>
         <SiteNav />
@@ -29,7 +27,7 @@ export default function App() {
           <Contact />
         </main>
         <footer className="site-footer">
-          <p>Kyro Zhao · Berklee Music Business · handmade, not chrome</p>
+          <p>Kyro Zhao · Berklee Music Business · handmade scrapbook</p>
         </footer>
       </div>
 

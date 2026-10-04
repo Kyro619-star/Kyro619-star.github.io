@@ -1,9 +1,12 @@
-import { FlowerCluster } from './FlowerField'
+import { CrayonFlower, InkScribble, TicketMark } from './Marks'
 
 export function Contact() {
   return (
     <section className="section contact" id="contact">
-      <FlowerCluster className="section-flowers" />
+      <CrayonFlower className="section-mark flower" color="#a289d8" center="#f6f142" />
+      <TicketMark className="section-mark ticket" />
+      <InkScribble className="section-mark scribble" />
+
       <span className="section-kicker">03 · Contact</span>
       <h2 className="section-title">
         Next step is <span className="type-paint blue-wash">easy</span>

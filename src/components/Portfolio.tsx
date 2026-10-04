@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { FlowerCluster } from './FlowerField'
+import {
+  ChartMark,
+  HeadphonesMark,
+  TicketMark,
+  VinylMark,
+} from './Marks'
 
 type Item = {
   id: string
@@ -18,7 +23,6 @@ const ITEMS: Item[] = [
     blurb:
       'Music & Web3 coursework: map a real payout confusion into a simpler artist-facing flow.',
     detail:
-      // TODO: replace with final case study link / deck when ready
       'Prototype notes for independent artists who want clearer visibility into licensing choices and earnings.',
     tag: 'Music Biz',
   },
@@ -29,7 +33,6 @@ const ITEMS: Item[] = [
     blurb:
       'Short profiles and takeaways from music / art platforms — what works, what is hype.',
     detail:
-      // TODO: attach real write-ups
       'Comparative sketches on discovery, rights framing, and creator incentives.',
     tag: 'Music Biz',
   },
@@ -49,9 +52,7 @@ const ITEMS: Item[] = [
     title: 'Stage / Cypher Cuts',
     blurb:
       'Selected performance moments — energy, musicality, and presence over polish.',
-    detail:
-      // TODO: embed real clip / event name
-      'Placeholder reel slot for live dance work.',
+    detail: 'Placeholder reel slot for live dance work.',
     tag: 'Dance',
   },
   {
@@ -69,9 +70,7 @@ const ITEMS: Item[] = [
     lane: 'songs',
     title: 'Original Demo · A-side',
     blurb: 'Self-written sketch — hook-first, built to travel.',
-    detail:
-      // TODO: link streaming / private demo
-      'Placeholder for an original track.',
+    detail: 'Placeholder for an original track.',
     tag: 'Songs',
   },
   {
@@ -115,14 +114,18 @@ export function Portfolio() {
 
   return (
     <section className="section portfolio" id="work">
-      <FlowerCluster className="section-flowers flip" />
+      <VinylMark className="section-mark vinyl" />
+      <ChartMark className="section-mark chart" />
+      <TicketMark className="section-mark ticket" />
+      <HeadphonesMark className="section-mark phones" />
+
       <span className="section-kicker">02 · Work</span>
       <h2 className="section-title">
         Work that <span className="type-paint">sticks</span>
       </h2>
       <p className="section-lead">
-        Music Business first, then dance and original songs. Journal lines —
-        not product cards.
+        Music Business first, then dance and original songs. Scrapbook lines —
+        vinyl, charts, tickets — not product cards.
       </p>
 
       <div className="lane-tabs" role="tablist" aria-label="Portfolio lanes">

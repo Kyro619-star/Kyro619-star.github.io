@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { PixelMascot } from './PixelMascot'
-import { FlowerCluster } from './FlowerField'
+import { ContractMark, CrayonFlower, StaveMark } from './Marks'
 
 export function Bio() {
   const ref = useRef<HTMLElement>(null)
@@ -25,7 +25,10 @@ export function Bio() {
       className={`section bio ${inView ? 'is-inview' : ''}`}
       id="bio"
     >
-      <FlowerCluster className="section-flowers" />
+      <CrayonFlower className="section-mark flower" color="#c3e23d" />
+      <StaveMark className="section-mark stave" />
+      <ContractMark className="section-mark contract" />
+
       <span className="section-kicker">01 · About</span>
       <h2 className="section-title">
         Real photo <span className="paint-plus">+</span> pixel twin
@@ -48,10 +51,10 @@ export function Bio() {
 
         <div className="bio-copy">
           <div className="bio-mascot-row">
-            <PixelMascot size={128} pose="present" />
+            <PixelMascot size={120} pose="present" />
             <p className="bio-pixel-note">
               pixel twin
-              <small>wavy hair · eye whites · fancy fit</small>
+              <small>tall fit · vertical eyes · long black hair</small>
             </p>
           </div>
 
