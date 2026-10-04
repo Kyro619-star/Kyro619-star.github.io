@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
-import { ChartMotif, VinylMotif } from './Motifs'
+import { useEffect, useRef, useState } from 'react'
+import { MarkerStroke, VinylRough } from './Doodles'
 
 type Item = {
   id: string
@@ -20,7 +20,7 @@ const ITEMS: Item[] = [
     detail:
       // TODO: replace with final case study link / deck when ready
       'Prototype notes for independent artists who want clearer visibility into licensing choices and earnings. Focus: fewer hidden steps, plainer language, actionable next move.',
-    tag: 'MUSIC BIZ',
+    tag: 'Music Biz',
   },
   {
     id: 'biz-2',
@@ -30,8 +30,8 @@ const ITEMS: Item[] = [
       'Short profiles and takeaways from music / art platforms — what works, what is hype.',
     detail:
       // TODO: attach real write-ups
-      'Comparative sketches on discovery, rights framing, and creator incentives. Built for quick HR skimming: problem → insight → what I would ship next.',
-    tag: 'MUSIC BIZ',
+      'Comparative sketches on discovery, rights framing, and creator incentives. Built for quick skimming: problem → insight → what I would ship next.',
+    tag: 'Music Biz',
   },
   {
     id: 'biz-3',
@@ -41,7 +41,7 @@ const ITEMS: Item[] = [
       'Helping creators license music clearly so they can publish without legal guesswork.',
     detail:
       'Audience: indie creators on deadline who have hit claims / muted audio before. Promise: clear terms, fast process, credit that sticks.',
-    tag: 'MUSIC BIZ',
+    tag: 'Music Biz',
   },
   {
     id: 'dance-1',
@@ -52,63 +52,60 @@ const ITEMS: Item[] = [
     detail:
       // TODO: embed real clip / event name
       'Placeholder reel slot for live dance work. Direction: short loop that shows musical phrasing and crowd read, not a full showcase dump.',
-    tag: 'DANCE',
+    tag: 'Dance',
   },
   {
     id: 'dance-2',
     lane: 'dance',
     title: 'Collab Lab',
     blurb:
-      'Workshop / collab sessions connecting movement with music-business storytelling.',
+      'Workshop sessions connecting movement with music-business storytelling.',
     detail:
       'Placeholder for classroom or community sessions where dance becomes a communication tool for artist identity.',
-    tag: 'DANCE',
+    tag: 'Dance',
   },
   {
     id: 'song-1',
     lane: 'songs',
     title: 'Original Demo · A-side',
-    blurb:
-      'Self-written sketch — hook-first, bilingual friendly, built to travel.',
+    blurb: 'Self-written sketch — hook-first, built to travel.',
     detail:
       // TODO: link streaming / private demo
       'Placeholder for an original track. Intent: one memorable hook + one clear mood so listeners remember the writer, not just the beat.',
-    tag: 'SONGS',
+    tag: 'Songs',
   },
   {
     id: 'song-2',
     lane: 'songs',
-    title: 'Writer Notes / 词曲手帐',
-    blurb: 'Scrapbook of motifs, bilingual lines, and production references.',
+    title: 'Writer Notes',
+    blurb: 'Motifs, lines, and production references from the scrapbook.',
     detail:
       'Process artifacts: lyric scraps, melody doodles, and references that show how culture and craft meet before release.',
-    tag: 'SONGS',
+    tag: 'Songs',
   },
 ]
 
 const LANES = [
-  { id: 'all', label: 'All', color: 'yellow' },
-  { id: 'biz', label: 'Music Business', color: 'pink' },
-  { id: 'dance', label: 'Dance', color: 'blue' },
-  { id: 'songs', label: 'Original Songs', color: 'lime' },
+  { id: 'all', label: 'All' },
+  { id: 'biz', label: 'Music Business' },
+  { id: 'dance', label: 'Dance' },
+  { id: 'songs', label: 'Original Songs' },
 ] as const
-
-const TILTS = [-2.4, 1.6, -1.1, 2.2, -1.8, 0.8, -0.6]
 
 export function Portfolio() {
   const [lane, setLane] = useState<(typeof LANES)[number]['id']>('all')
   const [openId, setOpenId] = useState<string | null>(null)
-  const boardRef = useRef<HTMLDivElement>(null)
-  const [boardIn, setBoardIn] = useState(false)
+  const listRef = useRef<HTMLDivElement>(null)
+  const [listIn, setListIn] = useState(false)
 
   useEffect(() => {
-    const el = boardRef.current
+    const el = listRef.current
     if (!el) return
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setBoardIn(true)
+        if (entry.isIntersecting) setListIn(true)
       },
-      { threshold: 0.15 },
+      { threshold: 0.12 },
     )
     io.observe(el)
     return () => io.disconnect()
@@ -119,13 +116,14 @@ export function Portfolio() {
 
   return (
     <section className="section portfolio" id="work">
-      <span className="section-kicker">02 · Portfolio / 作品</span>
+      <span className="section-kicker hand-label">02 · Work</span>
       <h2 className="section-title">
-        Work that <span className="type-highlight">sticks</span>
+        Work that{' '}
+        <span className="type-paint pink-wash">sticks</span>
       </h2>
       <p className="section-lead">
-        Three lanes for a fast skim: Music Business projects first, then dance
-        and original songs. Peel a note for detail.
+        Music Business first, then dance and original songs. Open a line for
+        detail — journal entries, not product cards.
       </p>
 
       <div className="lane-tabs" role="tablist" aria-label="Portfolio lanes">
@@ -135,7 +133,7 @@ export function Portfolio() {
             type="button"
             role="tab"
             aria-selected={lane === tab.id}
-            className={`lane-tab ${tab.color} ${lane === tab.id ? 'is-active' : ''}`}
+            className={`lane-tab ${lane === tab.id ? 'is-active' : ''}`}
             onClick={() => setLane(tab.id)}
           >
             {tab.label}
@@ -144,32 +142,37 @@ export function Portfolio() {
       </div>
 
       <div
-        ref={boardRef}
-        className={`work-board scrap-board ${boardIn ? 'is-inview' : ''}`}
+        ref={listRef}
+        className={`work-journal ${listIn ? 'is-inview' : ''}`}
       >
-        <VinylMotif className="board-deco vinyl" />
-        <ChartMotif className="board-deco chart" />
+        <VinylRough className="journal-deco" />
         {visible.map((item, index) => (
           <article
             key={item.id}
-            className={`work-note lane-${item.lane}`}
-            style={
-              {
-                '--tilt': `${TILTS[index % TILTS.length]}deg`,
-                '--delay': `${index * 70}ms`,
-              } as CSSProperties
-            }
+            className={`journal-row lane-${item.lane}`}
+            style={{ animationDelay: `${index * 80}ms` }}
           >
-            <span className="note-tape" aria-hidden="true" />
-            <span className="work-tag">{item.tag}</span>
-            <h3>{item.title}</h3>
-            <p>{item.blurb}</p>
+            <span className="work-tag hand-label">{item.tag}</span>
+            <div className="journal-main">
+              <h3>{item.title}</h3>
+              <MarkerStroke
+                className="title-underline"
+                color={
+                  item.lane === 'biz'
+                    ? '#ff2d95'
+                    : item.lane === 'dance'
+                      ? '#1e5eff'
+                      : '#8dff3a'
+                }
+              />
+              <p>{item.blurb}</p>
+            </div>
             <button
               type="button"
               className="work-open"
               onClick={() => setOpenId(item.id)}
             >
-              Peel note →
+              Read more
             </button>
           </article>
         ))}
@@ -196,7 +199,7 @@ export function Portfolio() {
             >
               ×
             </button>
-            <span className="work-tag">{openItem.tag}</span>
+            <span className="work-tag hand-label">{openItem.tag}</span>
             <h3 id="work-modal-title">{openItem.title}</h3>
             <p>{openItem.detail}</p>
           </div>

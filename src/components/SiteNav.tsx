@@ -2,7 +2,7 @@ import { PixelMascot } from './PixelMascot'
 
 const LINKS = [
   { href: '#pitch', label: 'Pitch' },
-  { href: '#bio', label: 'Bio' },
+  { href: '#bio', label: 'About' },
   { href: '#work', label: 'Work' },
   { href: '#contact', label: 'Contact' },
 ]
@@ -12,10 +12,10 @@ export function SiteNav() {
     <header className="site-nav">
       <div className="site-nav-inner">
         <a href="#pitch" className="nav-brand">
-          <PixelMascot size={40} bust />
+          <PixelMascot size={42} bust />
           <span>
             Kyro Zhao
-            <small>Berklee · MB</small>
+            <small>Berklee · Music Business</small>
           </span>
         </a>
         <nav aria-label="Main">

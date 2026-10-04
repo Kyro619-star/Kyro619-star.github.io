@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { PixelMascot } from './PixelMascot'
-import { TicketMotif } from './Motifs'
+import { InkScribble, MarkerStroke } from './Doodles'
 
 export function Bio() {
   const ref = useRef<HTMLElement>(null)
@@ -13,7 +13,7 @@ export function Bio() {
       ([entry]) => {
         if (entry.isIntersecting) setInView(true)
       },
-      { threshold: 0.25 },
+      { threshold: 0.22 },
     )
     io.observe(el)
     return () => io.disconnect()
@@ -25,49 +25,51 @@ export function Bio() {
       className={`section bio ${inView ? 'is-inview' : ''}`}
       id="bio"
     >
-      <span className="section-kicker">01 · Bio / 关于</span>
+      <span className="section-kicker hand-label">01 · About</span>
       <h2 className="section-title">
-        Real photo <span className="mark-smear">+</span> pixel twin
+        Real photo{' '}
+        <span className="paint-plus" aria-hidden="true">
+          +
+        </span>{' '}
+        pixel twin
       </h2>
       <p className="section-lead">
-        Berklee Music Business 在读。关心创作者如何被看见、如何被公平对待，以及音乐
-        × 产品 / 平台如何真正解决问题——而不是跟风概念。
+        Berklee Music Business student. Curious about how artists get seen,
+        paid fairly, and how music × product actually solves problems — not
+        hype.
       </p>
 
       <div className="bio-layout">
-        <figure className="bio-photo-frame torn">
+        <figure className="bio-photo-frame">
           <img
             src="/assets/photo.jpg"
             alt="Portrait of Kyro Zhao"
             className="bio-photo"
           />
-          <figcaption className="bio-photo-cap">KYRO · IRL</figcaption>
-          <span className="bio-tape" aria-hidden="true" />
-          <TicketMotif className="bio-ticket" />
+          <figcaption className="bio-photo-cap hand-label">Kyro · IRL</figcaption>
+          <MarkerStroke className="bio-stroke" color="#ff2d95" />
         </figure>
 
         <div className="bio-copy">
           <div className="bio-mascot-row">
-            <PixelMascot size={128} waving />
-            <p className="bio-pixel-note">
+            <PixelMascot size={132} waving />
+            <p className="bio-pixel-note hand-label">
               pixel twin
-              <br />
-              像素分身
               <small>wavy hair · cheek mole · black shirt</small>
             </p>
           </div>
 
           <ul className="bio-points">
             <li>
-              <strong>Who:</strong> Kyro Zhao — Berklee College of Music, Music
+              <strong>Who —</strong> Kyro Zhao, Berklee College of Music, Music
               Business.
             </li>
             <li>
-              <strong>Focus:</strong> artist growth, rights clarity, marketing +
-              product thinking across US / China contexts.
+              <strong>Focus —</strong> artist growth, rights clarity, marketing
+              + product thinking across US / China contexts.
             </li>
             <li>
-              <strong>Also:</strong> dance performer &amp; songwriter — culture
+              <strong>Also —</strong> dance performer &amp; songwriter. Culture
               first, decks second.
             </li>
           </ul>
@@ -79,6 +81,7 @@ export function Bio() {
             <span>Dance</span>
             <span>Original Songs</span>
           </div>
+          <InkScribble className="bio-scribble" />
         </div>
       </div>
     </section>

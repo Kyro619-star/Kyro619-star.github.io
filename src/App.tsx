@@ -5,6 +5,7 @@ import { DiaryLoader } from './components/DiaryLoader'
 import { Hero } from './components/Hero'
 import { Portfolio } from './components/Portfolio'
 import { SiteNav } from './components/SiteNav'
+import { SvgDefs } from './components/SvgDefs'
 import './styles/site.css'
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
 
   return (
     <div className={`site-shell ${ready ? '' : 'is-locked'}`}>
+      <SvgDefs />
       {!ready && <DiaryLoader onDone={finishIntro} />}
 
       <div className={`site-main ${ready ? 'is-in' : ''}`}>
@@ -24,10 +26,7 @@ export default function App() {
           <Contact />
         </main>
         <footer className="site-footer">
-          <p>
-            Kyro Zhao · Berklee Music Business · built as a scrapbook, not a
-            brochure
-          </p>
+          <p>Kyro Zhao · Berklee Music Business · a diary, not a brochure</p>
         </footer>
       </div>
     </div>
