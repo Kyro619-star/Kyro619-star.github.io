@@ -3,7 +3,7 @@
   image-rendering: pixelated;
   position: relative;
   flex-shrink: 0;
-  container-type: size;
+  overflow: hidden;
 }
 
 .pixel-grid {
@@ -11,7 +11,7 @@
   width: 16px;
   height: 16px;
   transform-origin: top left;
-  transform: scale(calc(100cqw / 16));
+  transform: scale(var(--mascot-scale, 6));
 }
 
 .pixel-grid i {
@@ -434,11 +434,12 @@
 
 .hero-mascot-wrap {
   position: absolute;
-  right: 4%;
-  bottom: 12%;
+  right: 6%;
+  top: 38%;
   z-index: 1;
   animation: sticker-pop 700ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
   animation-delay: 120ms;
+  filter: drop-shadow(6px 6px 0 #111);
 }
 
 .hero-bubble {
@@ -469,11 +470,12 @@
   .hero {
     min-height: auto;
     padding-top: 2rem;
-    padding-bottom: 7rem;
+    padding-bottom: 8.5rem;
   }
 
   .hero-mascot-wrap {
-    right: 0.5rem;
+    right: 0.75rem;
+    top: auto;
     bottom: 1rem;
   }
 

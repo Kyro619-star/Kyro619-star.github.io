@@ -50,7 +50,7 @@ export function DiaryLoader({ onDone }: DiaryLoaderProps) {
           </div>
           <div className="diary-cover diary-cover-right">
             <div className="diary-page-lines" />
-            <PixelMascot size={88} waving />
+            <PixelMascot size={112} waving />
             <p className="diary-step">{STEPS[step]}</p>
             <div className="diary-stickers">
               <span className="chip pink">MUSIC BIZ</span>

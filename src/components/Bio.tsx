@@ -25,7 +25,7 @@ export function Bio() {
 
         <div className="bio-copy">
           <div className="bio-mascot-row">
-            <PixelMascot size={84} waving />
+            <PixelMascot size={112} waving />
             <p className="bio-pixel-note">pixel twin · 像素分身</p>
           </div>
 

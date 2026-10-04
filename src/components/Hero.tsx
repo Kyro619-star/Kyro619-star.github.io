@@ -40,7 +40,7 @@ export function Hero() {
       </div>
 
       <div className="hero-mascot-wrap" aria-hidden="true">
-        <PixelMascot size={140} waving className="hero-mascot" />
+        <PixelMascot size={160} waving className="hero-mascot" />
         <span className="hero-bubble">hi HR ↓</span>
       </div>
     </section>
