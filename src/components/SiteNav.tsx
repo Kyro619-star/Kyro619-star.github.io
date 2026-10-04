@@ -12,7 +12,7 @@ export function SiteNav() {
     <header className="site-nav">
       <div className="site-nav-inner">
         <a href="#pitch" className="nav-brand">
-          <PixelMascot size={36} />
+          <PixelMascot size={40} bust />
           <span>
             Kyro Zhao
             <small>Berklee · MB</small>
@@ -20,7 +20,7 @@ export function SiteNav() {
         </a>
         <nav aria-label="Main">
           {LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a key={link.href} href={link.href} className="nav-link">
               {link.label}
             </a>
           ))}

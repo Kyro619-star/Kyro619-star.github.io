@@ -1,22 +1,20 @@
 :root {
-  --bg: #ffffff;
-  --ink: #111111;
-  --muted: #3a3a3a;
+  --bg: #fafaf7;
+  --ink: #121212;
+  --muted: #3d3d3d;
   --pink: #ff2d95;
   --cobalt: #1e5eff;
   --yellow: #ffe500;
-  --lime: #7cff3a;
+  --lime: #8dff3a;
   --red: #ff3b30;
   --cyan: #22d3ee;
-  --paper: #f7f7f2;
-  --grain: rgba(17, 17, 17, 0.04);
-  --stroke: 3px;
-  --radius-messy: 2px 14px 4px 12px;
+  --paper: #f3efe6;
+  --paper-2: #fffdf8;
   --font-display: 'Archivo Black', 'Noto Sans SC', sans-serif;
   --font-body: 'Space Grotesk', 'Noto Sans SC', sans-serif;
   --font-pixel: 'Press Start 2P', monospace;
-  --nav-h: 64px;
-  --max: 1100px;
+  --nav-h: 62px;
+  --max: 1080px;
 }
 
 *,
@@ -48,25 +46,49 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--ink);
-  background:
-    radial-gradient(circle at 12% 18%, rgba(255, 45, 149, 0.08), transparent 28%),
-    radial-gradient(circle at 88% 12%, rgba(30, 94, 255, 0.08), transparent 26%),
-    radial-gradient(circle at 70% 80%, rgba(255, 229, 0, 0.12), transparent 30%),
-    radial-gradient(circle at 20% 85%, rgba(124, 255, 58, 0.1), transparent 28%),
-    var(--bg);
+  background-color: var(--bg);
+  /* paper fiber + soft color washes — not flat AI white */
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(255, 45, 149, 0.07), transparent 26%),
+    radial-gradient(circle at 92% 8%, rgba(30, 94, 255, 0.07), transparent 24%),
+    radial-gradient(circle at 78% 88%, rgba(255, 229, 0, 0.1), transparent 28%),
+    radial-gradient(circle at 18% 82%, rgba(141, 255, 58, 0.08), transparent 26%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(17, 17, 17, 0.03) 27px,
+      rgba(17, 17, 17, 0.03) 28px
+    );
   line-height: 1.55;
   overflow-x: hidden;
 }
 
+/* grain / crayon noise overlay */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
-  opacity: 0.35;
-  background-image: radial-gradient(var(--grain) 0.8px, transparent 0.8px);
-  background-size: 4px 4px;
+  z-index: 80;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* halftone wash */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 79;
+  opacity: 0.12;
+  background-image: radial-gradient(#111 0.55px, transparent 0.55px);
+  background-size: 5px 5px;
+  mask-image: radial-gradient(ellipse at 30% 20%, #000 10%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, #000 5%, transparent 50%);
 }
 
 #root {
@@ -111,25 +133,25 @@ button {
 .section {
   width: min(100% - 2rem, var(--max));
   margin-inline: auto;
-  padding: 4.5rem 0;
+  padding: 4.25rem 0;
 }
 
 .section-kicker {
   display: inline-block;
   font-family: var(--font-pixel);
-  font-size: 0.55rem;
-  letter-spacing: 0.06em;
-  padding: 0.45rem 0.55rem;
-  border: var(--stroke) solid var(--ink);
+  font-size: 0.5rem;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 0.6rem;
+  border: 2px solid var(--ink);
   background: var(--yellow);
-  box-shadow: 4px 4px 0 var(--ink);
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   text-transform: uppercase;
+  transform: rotate(-1.5deg);
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-size: clamp(2rem, 6vw, 3.25rem);
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin: 0 0 0.75rem;
@@ -143,62 +165,111 @@ button {
   color: var(--muted);
 }
 
-.mark {
-  background: linear-gradient(transparent 55%, var(--yellow) 55%);
-  padding: 0 0.15em;
+.mark-smear {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.12em;
 }
 
-.mark-pink {
-  background: linear-gradient(transparent 55%, var(--pink) 55%);
+.mark-smear::before {
+  content: '';
+  position: absolute;
+  left: -0.08em;
+  right: -0.08em;
+  bottom: 0.05em;
+  height: 0.45em;
+  background: var(--yellow);
+  z-index: -1;
+  transform: skewX(-8deg) rotate(-1deg);
+  border-radius: 40% 20% 50% 30% / 40% 50% 30% 60%;
+  opacity: 0.9;
+}
+
+.mark-smear.blue::before {
+  background: var(--cobalt);
+}
+
+.type-highlight {
   color: #fff;
+  background: var(--pink);
+  padding: 0 0.15em 0.05em;
+  display: inline-block;
+  transform: rotate(-1.5deg);
+  border: 2px solid #111;
 }
 
-.mark-blue {
-  background: linear-gradient(transparent 55%, var(--cobalt) 55%);
-  color: #fff;
-}
-
-.sticker-btn {
+/* ink / crayon buttons — irregular, not identical brutal cards */
+.ink-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.85rem 1.2rem;
-  border: var(--stroke) solid var(--ink);
-  background: var(--lime);
-  color: var(--ink);
+  padding: 0.85rem 1.15rem;
   text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  box-shadow: 5px 5px 0 var(--ink);
-  transform: rotate(-1deg);
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  color: var(--ink);
+  background: var(--lime);
+  border: 2.5px solid #111;
+  border-radius: 255px 18px 225px 15px / 15px 225px 18px 255px;
+  transition: transform 180ms ease, background 180ms ease, filter 180ms ease;
 }
 
-.sticker-btn:hover,
-.sticker-btn:focus-visible {
-  transform: rotate(0deg) translate(-2px, -2px);
-  box-shadow: 7px 7px 0 var(--ink);
+.ink-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    -18deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+}
+
+.ink-btn:hover,
+.ink-btn:focus-visible {
+  transform: translateY(-2px) rotate(-0.5deg) scale(1.02);
+  filter: contrast(1.05);
   outline: none;
 }
 
-.sticker-btn.secondary {
-  background: var(--bg);
-}
-
-.sticker-btn.pink {
+.ink-btn.pink {
   background: var(--pink);
   color: #fff;
+  border-radius: 18px 255px 15px 225px / 225px 15px 255px 18px;
 }
 
-.sticker-btn.blue {
+.ink-btn.blue {
   background: var(--cobalt);
   color: #fff;
 }
 
+.ink-btn.ghost {
+  background: transparent;
+  background-image: linear-gradient(
+    transparent 60%,
+    rgba(255, 229, 0, 0.55) 60%
+  );
+}
+
+.motif {
+  display: block;
+  image-rendering: pixelated;
+}
+
+.motif-sm {
+  width: 40px;
+  height: auto;
+  opacity: 0.9;
+}
+
 @media (max-width: 720px) {
   .section {
-    padding: 3.25rem 0;
+    padding: 3rem 0;
   }
 }

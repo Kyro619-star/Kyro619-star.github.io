@@ -1,4 +1,5 @@
-import { useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { ChartMotif, VinylMotif } from './Motifs'
 
 type Item = {
   id: string
@@ -14,7 +15,8 @@ const ITEMS: Item[] = [
     id: 'biz-1',
     lane: 'biz',
     title: 'Rights / Royalty Clarity Flow',
-    blurb: 'Music & Web3 coursework: map a real payout confusion into a simpler artist-facing flow.',
+    blurb:
+      'Music & Web3 coursework: map a real payout confusion into a simpler artist-facing flow.',
     detail:
       // TODO: replace with final case study link / deck when ready
       'Prototype notes for independent artists who want clearer visibility into licensing choices and earnings. Focus: fewer hidden steps, plainer language, actionable next move.',
@@ -24,7 +26,8 @@ const ITEMS: Item[] = [
     id: 'biz-2',
     lane: 'biz',
     title: 'Platform Notes · Music × Web3',
-    blurb: 'Short profiles and takeaways from music / art platforms — what works, what is hype.',
+    blurb:
+      'Short profiles and takeaways from music / art platforms — what works, what is hype.',
     detail:
       // TODO: attach real write-ups
       'Comparative sketches on discovery, rights framing, and creator incentives. Built for quick HR skimming: problem → insight → what I would ship next.',
@@ -34,7 +37,8 @@ const ITEMS: Item[] = [
     id: 'biz-3',
     lane: 'biz',
     title: 'Creator Licensing Pitch',
-    blurb: 'Helping creators license music clearly so they can publish without legal guesswork.',
+    blurb:
+      'Helping creators license music clearly so they can publish without legal guesswork.',
     detail:
       'Audience: indie creators on deadline who have hit claims / muted audio before. Promise: clear terms, fast process, credit that sticks.',
     tag: 'MUSIC BIZ',
@@ -43,7 +47,8 @@ const ITEMS: Item[] = [
     id: 'dance-1',
     lane: 'dance',
     title: 'Stage / Cypher Cuts',
-    blurb: 'Selected performance moments — energy, musicality, and presence over polish.',
+    blurb:
+      'Selected performance moments — energy, musicality, and presence over polish.',
     detail:
       // TODO: embed real clip / event name
       'Placeholder reel slot for live dance work. Direction: short loop that shows musical phrasing and crowd read, not a full showcase dump.',
@@ -53,7 +58,8 @@ const ITEMS: Item[] = [
     id: 'dance-2',
     lane: 'dance',
     title: 'Collab Lab',
-    blurb: 'Workshop / collab sessions connecting movement with music-business storytelling.',
+    blurb:
+      'Workshop / collab sessions connecting movement with music-business storytelling.',
     detail:
       'Placeholder for classroom or community sessions where dance becomes a communication tool for artist identity.',
     tag: 'DANCE',
@@ -62,7 +68,8 @@ const ITEMS: Item[] = [
     id: 'song-1',
     lane: 'songs',
     title: 'Original Demo · A-side',
-    blurb: 'Self-written sketch — hook-first, bilingual friendly, built to travel.',
+    blurb:
+      'Self-written sketch — hook-first, bilingual friendly, built to travel.',
     detail:
       // TODO: link streaming / private demo
       'Placeholder for an original track. Intent: one memorable hook + one clear mood so listeners remember the writer, not just the beat.',
@@ -86,9 +93,26 @@ const LANES = [
   { id: 'songs', label: 'Original Songs', color: 'lime' },
 ] as const
 
+const TILTS = [-2.4, 1.6, -1.1, 2.2, -1.8, 0.8, -0.6]
+
 export function Portfolio() {
   const [lane, setLane] = useState<(typeof LANES)[number]['id']>('all')
   const [openId, setOpenId] = useState<string | null>(null)
+  const boardRef = useRef<HTMLDivElement>(null)
+  const [boardIn, setBoardIn] = useState(false)
+
+  useEffect(() => {
+    const el = boardRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setBoardIn(true)
+      },
+      { threshold: 0.15 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   const visible = ITEMS.filter((item) => lane === 'all' || item.lane === lane)
   const openItem = ITEMS.find((item) => item.id === openId) ?? null
@@ -97,11 +121,11 @@ export function Portfolio() {
     <section className="section portfolio" id="work">
       <span className="section-kicker">02 · Portfolio / 作品</span>
       <h2 className="section-title">
-        Work that <span className="mark-pink">sticks</span>
+        Work that <span className="type-highlight">sticks</span>
       </h2>
       <p className="section-lead">
-        Three lanes for a fast skim: Music Business projects first, then dance and
-        original songs. Click a sticker for detail.
+        Three lanes for a fast skim: Music Business projects first, then dance
+        and original songs. Peel a note for detail.
       </p>
 
       <div className="lane-tabs" role="tablist" aria-label="Portfolio lanes">
@@ -119,13 +143,24 @@ export function Portfolio() {
         ))}
       </div>
 
-      <div className="work-board">
+      <div
+        ref={boardRef}
+        className={`work-board scrap-board ${boardIn ? 'is-inview' : ''}`}
+      >
+        <VinylMotif className="board-deco vinyl" />
+        <ChartMotif className="board-deco chart" />
         {visible.map((item, index) => (
           <article
             key={item.id}
-            className={`work-sticker lane-${item.lane}`}
-            style={{ '--tilt': `${(index % 3) - 1}deg` } as CSSProperties}
+            className={`work-note lane-${item.lane}`}
+            style={
+              {
+                '--tilt': `${TILTS[index % TILTS.length]}deg`,
+                '--delay': `${index * 70}ms`,
+              } as CSSProperties
+            }
           >
+            <span className="note-tape" aria-hidden="true" />
             <span className="work-tag">{item.tag}</span>
             <h3>{item.title}</h3>
             <p>{item.blurb}</p>
@@ -134,7 +169,7 @@ export function Portfolio() {
               className="work-open"
               onClick={() => setOpenId(item.id)}
             >
-              Open note →
+              Peel note →
             </button>
           </article>
         ))}
