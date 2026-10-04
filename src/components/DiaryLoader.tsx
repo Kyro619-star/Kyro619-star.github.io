@@ -29,12 +29,12 @@ export function DiaryLoader({ onDone }: DiaryLoaderProps) {
       return
     }
 
-    // Intentionally slow so stages are readable (~7.5s total)
+    // Slow, readable stages (~9.5s): closed → turn → linger open → enter
     const timers = [
-      window.setTimeout(() => setPhase('flipping'), 1400),
-      window.setTimeout(() => setPhase('open'), 3400),
-      window.setTimeout(() => setPhase('exit'), 5800),
-      window.setTimeout(() => onDone(), 7200),
+      window.setTimeout(() => setPhase('flipping'), 2000),
+      window.setTimeout(() => setPhase('open'), 4800),
+      window.setTimeout(() => setPhase('exit'), 7800),
+      window.setTimeout(() => onDone(), 9400),
     ]
 
     return () => timers.forEach((t) => window.clearTimeout(t))
