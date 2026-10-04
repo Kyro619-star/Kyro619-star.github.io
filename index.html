@@ -1,171 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kyro Zhao | Music Business</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body id="top">
-  <div class="page">
-    <header class="site-nav">
-      <div class="nav-inner">
-        <a href="#top" class="nav-logo">Kyro Zhao</a>
-        <nav class="nav-links" aria-label="Main">
-          <a href="#about">About</a>
-          <a href="#building">What I'm Building</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
-
-    <header class="hero">
-      <div class="hero-text">
-        <h1 class="name">Kyro Zhao</h1>
-        <p class="tagline">
-          <img src="assets/berklee.svg" alt="" class="berklee-icon" width="18" height="18">
-          Berklee College of Music · Music Business
-        </p>
-        <div class="hero-actions">
-          <a href="#portfolio" class="cta-btn">View Portfolio</a>
-          <a href="#contact" class="cta-btn cta-btn-outline">Contact</a>
-        </div>
-      </div>
-      <div class="avatar-wrapper">
-        <img src="assets/photo.jpg" alt="Kyro Zhao" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show');">
-        <span class="avatar-placeholder" aria-hidden="true">KZ</span>
-      </div>
-    </header>
-
-    <main>
-      <section class="about" id="about">
-        <h2>About</h2>
-        <div class="bio-card">
-          <p>I'm a Berklee College of Music student majoring in Music Business. I'm interested in how artists build audiences across cultures and how new platforms can improve the way fans support creators. Right now I'm focused on strengthening my marketing strategy skills and learning how to think like a product builder.</p>
-        </div>
-        <div class="care-about-block">
-          <button type="button" class="care-about-trigger" aria-expanded="false" aria-controls="care-about-content" id="care-about-trigger">
-            <span>What I Care About Right Now</span>
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div id="care-about-content" class="care-about-content" hidden>
-            <p>This semester I'm taking Music Product, Music & Web3, and entrepreneurship classes. My biggest takeaway isn't just new information. It's a change in how I think. I'm paying closer attention to what's actually happening in the music business right now, and where I can realistically fit as a Berklee business student in the AI era.</p>
-            <p>I'm especially interested in the intersection of music and new technology, including AI, platforms, and blockchain. But I only care about it when it connects to real problems and real incentives, not hype.</p>
-            <p>The questions I keep coming back to are rights and royalty transparency, how platform algorithms shape discovery, and how everyday artists can build sustainable careers instead of depending on luck. I'm also interested in how these issues play out across different markets, especially the U.S. and China, because the business rules, culture, and regulation can look completely different.</p>
-            <p>More than anything, I'm here because I genuinely love this industry. I want artists who work hard and have real talent to be seen, treated fairly, and given a real chance.</p>
-          </div>
-        </div>
-        <div class="highlights">
-          <span class="chip">Berklee</span>
-          <span class="chip">Music Business</span>
-          <span class="chip">Marketing + Product</span>
-        </div>
-      </section>
-
-      <section class="work" aria-label="Who this is for and what I'm building">
-        <div class="work-grid">
-          <section class="who" id="who">
-            <h2>Who This Is For</h2>
-            <ul>
-              <li>Independent creators publishing public work (short videos, short films, podcasts, game demos) who need music they can use legally</li>
-              <li>Creators who have faced copyright issues before (claims, muted audio, demonetization) and want a safer workflow</li>
-              <li>Small teams or solo creators working on deadlines who need clear terms and a fast, simple process</li>
-              <li>Indie artists and producers who want placements with clear credit and straightforward licensing</li>
-            </ul>
-            <p>“I help creators license music clearly and quickly, so they can publish with confidence and without legal guesswork.”</p>
-            <a href="#contact" class="cta-btn">Contact me</a>
-          </section>
-
-          <section class="building" id="building">
-            <h2>What I'm Building</h2>
-            <div class="building-card">
-              <p>This semester, I'm prototyping a small music-tech idea in my Music & Web3 class, starting from a real rights/royalty problem and turning it into a simple user flow.</p>
-              <p>It's for independent artists who want clearer visibility into what's happening with their music and how licensing choices connect to earnings.</p>
-              <p>It solves one problem: making rights and payout systems easier to understand and act on, with less guesswork and fewer hidden steps.</p>
-              <a href="mailto:boxinzhao619@gmail.com" class="cta-btn">Contact me</a>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <section class="portfolio" id="portfolio">
-        <h2>Portfolio</h2>
-        <div class="card-grid">
-          <article class="card portfolio-card" data-modal="modal-1" tabindex="0" role="button">
-            <h3>Web3 Music/Art Platform Notes</h3>
-            <p>Short profiles and takeaways from music + Web3 companies and platforms.</p>
-            <span class="card-hint">Click to view details</span>
-          </article>
-          <article class="card portfolio-card" data-modal="modal-2" tabindex="0" role="button">
-            <h3>Marketing / Product Case Studies</h3>
-            <p>Coursework-style analyses on product strategy, positioning, and audience growth.</p>
-            <span class="card-hint">Click to view details</span>
-          </article>
-          <article class="card portfolio-card" data-modal="modal-3" tabindex="0" role="button">
-            <h3>Creative Work & Performance</h3>
-            <p>Selected creative projects and performance-related work (placeholders for now).</p>
-            <span class="card-hint">Click to view details</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="contact" id="contact">
-        <h2>Contact</h2>
-        <div class="contact-card">
-          <p><span class="label">Email</span> <a href="mailto:boxinzhao619@gmail.com" class="link">boxinzhao619@gmail.com</a></p>
-          <p><span class="label">GitHub</span> <a href="https://github.com/Kyro619-star" class="link" target="_blank" rel="noopener noreferrer">github.com/Kyro619-star</a></p>
-          <a href="mailto:boxinzhao619@gmail.com" class="cta-btn">Contact me</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>Built with Cursor + GitHub Pages</p>
-    </footer>
-  </div>
-
-  <!-- Portfolio modals -->
-  <div id="modal-1" class="modal" role="dialog" aria-labelledby="modal-1-title" aria-modal="true" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-content">
-      <button type="button" class="modal-close" aria-label="Close modal" data-close>&times;</button>
-      <h3 id="modal-1-title">Web3 Music/Art Platform Notes</h3>
-      <p>Short profiles and takeaways from music + Web3 companies and platforms.</p>
-      <div class="modal-links">
-        <a href="#" class="link link-muted">Coming soon</a>
-      </div>
-    </div>
-  </div>
-
-  <div id="modal-2" class="modal" role="dialog" aria-labelledby="modal-2-title" aria-modal="true" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-content">
-      <button type="button" class="modal-close" aria-label="Close modal" data-close>&times;</button>
-      <h3 id="modal-2-title">Marketing / Product Case Studies</h3>
-      <p>Coursework-style analyses on product strategy, positioning, and audience growth.</p>
-      <div class="modal-links">
-        <a href="#" class="link link-muted">Coming soon</a>
-      </div>
-    </div>
-  </div>
-
-  <div id="modal-3" class="modal" role="dialog" aria-labelledby="modal-3-title" aria-modal="true" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-content">
-      <button type="button" class="modal-close" aria-label="Close modal" data-close>&times;</button>
-      <h3 id="modal-3-title">Creative Work & Performance</h3>
-      <p>Selected creative projects and performance-related work (placeholders for now).</p>
-      <div class="modal-links">
-        <a href="#" class="link link-muted">Coming soon</a>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kyro Zhao — Berklee College of Music · Music Business."
+    />
+    <title>Kyro Zhao | Music Business</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
